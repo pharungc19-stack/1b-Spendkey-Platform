@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1b Spendkey Platform - High Level View (descriptions)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #010C24;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .card {
+            background-color: #0A1838;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #1a2847;
+        }
+        
+        .header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #1a2847;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-container {
+            height: 26px;
+            width: 164px;
+        }
+        
+        .logo {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        
+        .list-item {
+            border-bottom: 1px solid #1a2847;
+            transition: background-color 0.2s;
+        }
+        
+        .list-item:hover {
+            background-color: #0F1F3D;
+        }
+        
+        .list-button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .list-button:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: -2px;
+        }
+        
+        .button-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .icon-collapsed {
+            color: #9ca3af;
+        }
+        
+        .icon-expanded {
+            color: #00A8FD;
+        }
+        
+        .title {
+            font-weight: 500;
+            color: white;
+        }
+        
+        .details {
+            padding: 0 1.5rem 1rem 3.5rem;
+        }
+        
+        .details-content {
+            background-color: #0F1F3D;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+        }
+        
+        .details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .details-grid {
+                flex-direction: row;
+            }
+        }
+        
+        .details-main {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .details-sidebar {
+            flex-shrink: 0;
+        }
+        
+        @media (min-width: 1024px) {
+            .details-sidebar {
+                width: 16rem;
+            }
+        }
+        
+        .details-heading {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #00A8FD;
+            line-height: 1.375;
+            margin-bottom: 0.75rem;
+        }
+        
+        .details-text {
+            font-size: 0.875rem;
+            color: white;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="logo-container">
+                    <svg class="logo" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 164 26">
+                        <g clip-path="url(#clip0_1_645)">
+                            <path d="M37.1361 11.3492C37.4452 11.3492 37.8674 11.3553 38.4073 11.3636C38.9449 11.3739 39.5239 11.4151 40.1399 11.4872C40.758 11.5573 41.3784 11.683 42.0053 11.8561C42.6321 12.0313 43.2002 12.2827 43.7052 12.6125C44.2124 12.9402 44.6216 13.3626 44.9416 13.8758C45.2615 14.391 45.4204 15.0278 45.4204 15.7883C45.4204 16.9815 45.1418 17.9316 44.5781 18.6405C44.0165 19.3515 43.3287 19.8915 42.5146 20.2604C41.7005 20.6313 40.8255 20.8663 39.8917 20.9693C38.9558 21.0724 38.1265 21.1218 37.3995 21.1218C37.2689 21.1218 36.9816 21.1177 36.544 21.1053C36.1022 21.095 35.5907 21.0394 35.0073 20.9364C34.424 20.8333 33.808 20.6684 33.1594 20.4438C32.5085 20.215 31.9143 19.8936 31.3767 19.4711C30.8369 19.0507 30.3907 18.5045 30.0402 17.8368C29.6876 17.1691 29.5135 16.3509 29.5135 15.3844H33.5403C33.5403 15.5678 33.5751 15.7903 33.6404 16.0459C33.7057 16.3035 33.8602 16.5549 34.104 16.8022C34.3434 17.0495 34.7091 17.2618 35.1923 17.4349C35.6756 17.6101 36.3373 17.707 37.1731 17.7276C38.207 17.7482 39.0058 17.709 39.5674 17.606C40.129 17.5029 40.5404 17.3649 40.8038 17.1876C41.0671 17.0145 41.2282 16.8332 41.2848 16.6497C41.3392 16.4643 41.3653 16.2891 41.3653 16.1242C41.3653 15.9408 41.3327 15.7533 41.2674 15.5698C41.2021 15.3864 41.0323 15.2154 40.7559 15.0608C40.4816 14.9062 40.0528 14.7785 39.4673 14.6754C38.8839 14.5744 38.0764 14.5126 37.0425 14.492C36.2502 14.4714 35.4579 14.3683 34.6656 14.1829C33.8733 13.9974 33.1572 13.7171 32.5194 13.3338C31.8795 12.9546 31.3636 12.4765 30.9675 11.8994C30.5713 11.3244 30.3732 10.6464 30.3732 9.86327C30.3732 8.99976 30.5713 8.24342 30.9675 7.59631C31.3636 6.94713 31.886 6.41955 32.5347 6.00737C33.1855 5.59726 33.9277 5.28813 34.7635 5.08204C35.6016 4.87801 36.4809 4.77497 37.4038 4.77497C37.8892 4.77497 38.5379 4.82649 39.3541 4.92953C40.166 5.03258 40.9648 5.26958 41.7441 5.63847C42.5255 6.00737 43.1981 6.5535 43.7596 7.27275C44.3212 7.99199 44.5889 8.97091 44.5672 10.2033H40.5382C40.5382 9.54589 40.3031 9.02655 39.8286 8.64529C39.3563 8.26609 38.5139 8.07443 37.3037 8.07443C36.4026 8.07443 35.6756 8.23312 35.127 8.55255C34.5764 8.87199 34.3021 9.30889 34.3021 9.86327C34.3021 10.4176 34.5655 10.7783 35.0944 11.005C35.6233 11.2317 36.3046 11.345 37.1404 11.345" fill="white"/>
+                            <path d="M47.1378 13.0474C47.1378 11.7532 47.2814 10.595 47.5666 9.57688C47.8517 8.55881 48.3088 7.6953 48.9357 6.98636C49.5626 6.27742 50.3614 5.73335 51.33 5.35209C52.2964 4.97082 53.4762 4.78328 54.8627 4.78328C56.3145 4.8245 57.6118 5.13157 58.7567 5.70656C59.24 5.95386 59.7188 6.2733 60.1912 6.6628C60.6657 7.05231 61.0814 7.54074 61.4449 8.12809C61.8062 8.71544 62.1044 9.40789 62.3373 10.2116C62.5681 11.0133 62.6834 11.9489 62.6834 13.0185C62.6834 14.0881 62.5789 15.0217 62.37 15.8234C62.161 16.6251 61.8846 17.3155 61.5472 17.8905C61.2033 18.4675 60.8202 18.9436 60.3892 19.3248C59.9604 19.7061 59.5142 20.0193 59.0528 20.2646C57.9971 20.819 56.7869 21.1075 55.4221 21.1281C54.7408 21.0889 54.0791 20.9529 53.4414 20.7283C52.8907 20.5222 52.3291 20.1925 51.7588 19.7391C51.1863 19.2877 50.7118 18.6303 50.3396 17.7647L51.0645 18.6592V26H47.1356V13.0474H47.1378ZM54.8627 8.42073C54.0029 8.42073 53.3216 8.55469 52.8145 8.82054C52.3095 9.08845 51.9286 9.44292 51.6761 9.88395C51.4236 10.325 51.2582 10.8196 51.182 11.3637C51.1036 11.9098 51.0666 12.458 51.0666 13.0144C51.0666 13.4678 51.1102 13.9604 51.1994 14.4941C51.2865 15.0279 51.4693 15.5266 51.7457 15.9903C52.0222 16.454 52.4053 16.8394 52.9015 17.1465C53.3956 17.4556 54.0486 17.6102 54.8649 17.6102C55.6811 17.6102 56.332 17.4556 56.8304 17.1465C57.3245 16.8394 57.7032 16.454 57.9688 15.9903C58.2322 15.5287 58.4085 15.03 58.4955 14.4941C58.5826 13.9604 58.6283 13.4678 58.6283 13.0144C58.6283 12.561 58.5826 12.0685 58.4955 11.5327C58.4063 10.9989 58.23 10.4981 57.9688 10.0365C57.7032 9.57276 57.3267 9.18738 56.8304 8.87825C56.3341 8.57117 55.679 8.41661 54.8649 8.41661" fill="white"/>
+                            <path d="M80.1467 11.0113C80.1902 11.3204 80.2316 11.6398 80.2642 11.9675C80.2969 12.2952 80.3121 12.6455 80.3121 13.0165V13.5729H68.7606C68.8042 13.9212 68.8586 14.2777 68.9261 14.6363C68.9914 14.997 69.1002 15.3515 69.2547 15.6997C69.4963 16.2335 69.8707 16.7075 70.3779 17.1176C70.885 17.5298 71.5881 17.7338 72.4892 17.7338C73.3904 17.7338 74.0956 17.5298 74.6028 17.1176C75.1099 16.7075 75.4821 16.2335 75.7259 15.6997H80.0183C79.8398 16.419 79.5938 17.0455 79.276 17.5813C78.9561 18.1172 78.6034 18.5808 78.2204 18.9704C77.8329 19.3599 77.4215 19.6834 76.9818 19.941C76.54 20.1986 76.1112 20.4088 75.6933 20.5737C74.6811 20.9447 73.6124 21.1281 72.4892 21.1281C71.0178 21.1075 69.7053 20.821 68.5626 20.2646C68.0772 20.0193 67.5983 19.704 67.126 19.3248C66.6515 18.9436 66.2357 18.4654 65.8722 17.8905C65.5065 17.3155 65.217 16.6251 64.9972 15.8234C64.7774 15.0217 64.6664 14.0881 64.6664 13.0185C64.6664 11.9489 64.7774 11.0133 64.9972 10.2116C65.217 9.40995 65.5087 8.71544 65.8722 8.12809C66.2335 7.5428 66.6515 7.05437 67.126 6.6628C67.5983 6.2733 68.0772 5.95386 68.5626 5.70656C69.7053 5.13157 71.0178 4.82244 72.4892 4.78328C73.7016 4.8245 74.8357 5.05944 75.8913 5.49223C76.331 5.6777 76.7751 5.91883 77.2278 6.21559C77.6784 6.51442 78.0963 6.88332 78.4816 7.32641C78.8668 7.76949 79.2086 8.29296 79.5068 8.89885C79.805 9.50475 80.0183 10.2096 80.1489 11.0113M75.9915 11.0113C75.8805 10.6836 75.7433 10.3538 75.5801 10.0262C75.4125 9.69641 75.1883 9.39759 74.9031 9.13173C74.6158 8.86382 74.2763 8.65155 73.8801 8.49904C73.484 8.34448 73.0225 8.26823 72.4914 8.26823C71.9603 8.26823 71.5032 8.34448 71.1049 8.49904C70.7087 8.65361 70.367 8.86382 70.0819 9.13173C69.7945 9.39759 69.566 9.69641 69.3897 10.0262C69.2112 10.3538 69.0806 10.6836 68.9914 11.0113H75.9915V11.0113Z" fill="white"/>
+                            <path d="M89.7522 4.78121C89.8175 4.78121 90.0548 4.79151 90.4618 4.81212C90.8689 4.83273 91.3477 4.91928 91.8962 5.07385C92.4447 5.22842 93.0303 5.46954 93.6463 5.79928C94.2623 6.12696 94.8347 6.60096 95.3636 7.21716C95.8926 7.83336 96.3257 8.61031 96.6674 9.54595C97.007 10.4816 97.179 11.6377 97.179 13.0165V20.8189H93.1522V13.0165C93.1522 12.5631 93.1086 12.1014 93.0216 11.6274C92.9323 11.1534 92.7669 10.7227 92.5253 10.3311C92.2837 9.94164 91.9419 9.61602 91.5023 9.36047C91.0604 9.10286 90.4792 8.97509 89.7522 8.97509C89.0252 8.97509 88.4419 9.10286 88.0022 9.36047C87.5625 9.61808 87.2208 9.94164 86.9792 10.3311C86.7354 10.7227 86.5721 11.1534 86.4851 11.6274C86.3958 12.0994 86.3523 12.5631 86.3523 13.0165V20.8189H82.3255V13.0165C82.3255 11.6377 82.4953 10.4816 82.8348 9.54595C83.1787 8.61031 83.6141 7.83336 84.1408 7.21716C84.6676 6.60096 85.24 6.12696 85.856 5.79928C86.472 5.46954 87.0554 5.22842 87.6061 5.07385C88.1546 4.91928 88.6313 4.83273 89.0252 4.81212C89.4214 4.79151 89.663 4.78121 89.7501 4.78121" fill="white"/>
+                            <path d="M110.779 7.37175V0H114.708V12.9835C114.708 14.0531 114.597 14.9887 114.377 15.7904C114.157 16.5921 113.865 17.2846 113.502 17.8719C113.138 18.4572 112.727 18.9415 112.265 19.3228C111.804 19.704 111.33 20.0173 110.846 20.2625C109.701 20.8169 108.415 21.1054 106.983 21.126C105.509 21.1054 104.199 20.819 103.054 20.2625C102.571 20.0173 102.092 19.702 101.619 19.3228C101.145 18.9415 100.727 18.4634 100.366 17.8884C100.004 17.3134 99.7106 16.623 99.4907 15.8213C99.2709 15.0197 99.162 14.0861 99.162 13.0165C99.162 11.9469 99.2665 11.0113 99.4755 10.2096C99.6844 9.4079 99.9565 8.71338 100.298 8.12603C100.64 7.54074 101.023 7.05232 101.454 6.66075C101.885 6.27124 102.329 5.95181 102.793 5.7045C103.848 5.12952 105.056 4.82039 106.423 4.78123C107.105 4.84306 107.766 4.99556 108.402 5.24287C108.953 5.46956 109.514 5.81373 110.087 6.27537C110.659 6.737 111.134 7.4006 111.506 8.26411L110.781 7.36969L110.779 7.37175ZM106.983 17.6122C107.797 17.6122 108.452 17.4577 108.946 17.1485C109.442 16.8415 109.825 16.454 110.102 15.9924C110.376 15.5308 110.559 15.032 110.646 14.4962C110.733 13.9624 110.777 13.4699 110.777 13.0165C110.777 12.5631 110.733 12.0705 110.646 11.5347C110.559 11.001 110.374 10.5022 110.102 10.0385C109.825 9.57483 109.442 9.18944 108.946 8.88237C108.45 8.5753 107.797 8.42074 106.983 8.42074C106.169 8.42074 105.514 8.5753 105.019 8.88237C104.525 9.19151 104.144 9.57689 103.881 10.0385C103.615 10.5002 103.441 11.001 103.354 11.5347C103.267 12.0685 103.222 12.5631 103.222 13.0165C103.222 13.4699 103.265 13.9624 103.354 14.4962C103.441 15.03 103.618 15.5287 103.881 15.9924C104.144 16.4561 104.525 16.8415 105.019 17.1485C105.516 17.4577 106.169 17.6122 106.983 17.6122Z" fill="white"/>
+                            <path d="M121.046 20.819H117.019V0H121.046V11.4111L125.965 5.18104H130.421L125.336 11.6893L132.434 20.819H127.979L123.059 14.5271L121.046 16.9631V20.819Z" fill="white"/>
+                            <path d="M147.564 11.0113C147.608 11.3204 147.645 11.6398 147.679 11.9675C147.712 12.2952 147.727 12.6455 147.727 13.0165V13.5729H136.176C136.219 13.9212 136.276 14.2777 136.339 14.6363C136.407 14.997 136.518 15.3515 136.67 15.6997C136.909 16.2335 137.286 16.7075 137.793 17.1176C138.298 17.5298 139.003 17.7338 139.904 17.7338C140.806 17.7338 141.511 17.5298 142.016 17.1176C142.523 16.7075 142.897 16.2335 143.141 15.6997H147.431C147.255 16.419 147.007 17.0455 146.689 17.5813C146.369 18.1172 146.017 18.5808 145.631 18.9704C145.248 19.3599 144.835 19.6834 144.395 19.941C143.955 20.1986 143.524 20.4088 143.106 20.5737C142.094 20.9447 141.028 21.1281 139.904 21.1281C138.431 21.1075 137.121 20.821 135.976 20.2646C135.492 20.0193 135.014 19.704 134.541 19.3248C134.067 18.9436 133.649 18.4654 133.287 17.8905C132.926 17.3155 132.634 16.6251 132.412 15.8234C132.193 15.0217 132.084 14.0881 132.084 13.0185C132.084 11.9489 132.193 11.0133 132.412 10.2116C132.634 9.40995 132.926 8.71544 133.287 8.12809C133.649 7.5428 134.067 7.05437 134.541 6.6628C135.014 6.2733 135.492 5.95386 135.976 5.70656C137.118 5.13157 138.431 4.82244 139.904 4.78328C141.115 4.8245 142.249 5.05944 143.304 5.49223C143.744 5.6777 144.188 5.91883 144.641 6.21559C145.091 6.51442 145.509 6.88332 145.895 7.32641C146.28 7.76949 146.622 8.29296 146.918 8.89885C147.216 9.50475 147.429 10.2096 147.562 11.0113M143.402 11.0113C143.294 10.6836 143.156 10.3538 142.991 10.0262C142.826 9.69641 142.601 9.39759 142.314 9.13173C142.027 8.86382 141.687 8.65155 141.291 8.49904C140.895 8.34448 140.431 8.26823 139.904 8.26823C139.378 8.26823 138.914 8.34448 138.518 8.49904C138.122 8.65361 137.78 8.86382 137.495 9.13173C137.21 9.39759 136.979 9.69641 136.803 10.0262C136.626 10.3538 136.494 10.6836 136.407 11.0113H143.402V11.0113Z" fill="white"/>
+                            <path d="M158.029 22.9457C157.788 23.665 157.424 24.2276 156.941 24.6274C156.456 25.0272 155.959 25.3302 155.454 25.5362C154.882 25.7609 154.268 25.9154 153.604 25.9979H148.389V22.3893H151.756C152.394 22.3893 152.834 22.3068 153.078 22.142C153.319 21.9771 153.474 21.7916 153.539 21.5876C153.604 21.3609 153.583 21.093 153.474 20.7859L148.091 5.17891H152.152L156.047 17.2701L159.941 5.17891H164L158.025 22.9437L158.029 22.9457Z" fill="white"/>
+                            <path clip-rule="evenodd" d="M0.10252 12.2539C0.065517 10.7866 0.0132774 9.31923 0.000217498 7.84983C-0.0128424 6.49377 0.561793 5.43036 1.84602 4.75852C4.57771 3.33033 7.31812 1.91039 10.0455 0.473955C10.5069 0.230772 10.681 0.247259 10.6876 0.807817C10.705 2.65642 10.7355 4.50709 10.8182 6.35363C10.8378 6.79054 10.6049 6.90183 10.3001 7.06051C8.36944 8.06622 6.4431 9.08429 4.51459 10.0962C4.36876 10.4218 4.05096 10.5619 3.75494 10.7248C2.83639 11.2255 1.89826 11.6934 0.953591 12.1468C0.698922 12.2683 0.429018 12.5321 0.104697 12.2519" fill="white" fill-rule="evenodd"/>
+                            <path clip-rule="evenodd" d="M0.102535 12.254C1.52606 11.8047 2.73628 10.9577 4.06186 10.325C4.21423 10.2529 4.36224 10.1725 4.51243 10.0963C6.29511 11.1411 8.2258 11.9181 10.0977 12.7981C10.7377 13.099 11.0228 13.4287 11.0076 14.1418C10.9749 15.7719 11.0359 17.4062 11.1033 19.0384C11.1294 19.6752 11.0228 19.9081 10.3176 19.568C7.42697 18.177 4.51896 16.8188 1.62401 15.4319C0.230957 14.7683 -0.0389473 13.5936 0.102535 12.254Z" fill="#5CEAD2" fill-rule="evenodd"/>
+                            <path clip-rule="evenodd" d="M20.2672 15.3391C21.7669 16.0171 23.2666 16.6951 24.7685 17.3752C24.9905 18.9271 24.3723 20.0894 22.9314 20.8457C20.2672 22.2451 17.5986 23.632 14.9235 25.0149C14.1225 25.4291 14.092 25.4044 14.0702 24.543C14.0267 22.853 14.0202 21.1631 13.9396 19.4773C13.9157 18.9353 14.0855 18.6468 14.5926 18.3954C16.2469 17.5751 17.8772 16.7075 19.5119 15.8522C19.7818 15.7121 20.1017 15.6297 20.265 15.3391" fill="white" fill-rule="evenodd"/>
+                            <path clip-rule="evenodd" d="M20.267 15.3391C18.3515 14.4179 16.4448 13.4781 14.5119 12.5899C14.0244 12.3652 13.8546 12.1056 13.8524 11.6006C13.848 9.85921 13.8045 8.11571 13.7414 6.37427C13.7218 5.80753 13.872 5.70448 14.414 5.96209C17.3568 7.36761 20.3127 8.7484 23.2599 10.1457C24.1588 10.5723 24.6421 11.275 24.6682 12.2292C24.7139 13.9439 24.7335 15.6585 24.7661 17.3732C24.5506 17.5751 24.3286 17.4494 24.1349 17.3546C22.9856 16.8002 21.8168 16.2809 20.6588 15.743C20.4738 15.6585 20.3236 15.5369 20.267 15.335" fill="#5CEAD2" fill-rule="evenodd"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_645">
+                                <rect fill="white" height="26" width="164"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>1b Spendkey Platform - High Level View (descriptions)</h1>
+            </div>
+            
+            <div id="list-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            { id: 1, title: "Spendkey Commercial Operating System", description: "This represents the overarching vision of Spendkey. It is not a product feature but a structural shift: moving commercial authority from fragmented systems and manual processes into a unified decision-first control layer. It implies Spendkey is not analytics software, but an operating system for commercial control.", category: "Vision" },
+            { id: 2, title: "Commercial Control Domains – Where authority shifts to the system", description: "These are not use cases. They are domains of enterprise authority that traditionally sit across multiple teams. Spendkey shifts decision authority in these domains into a structured system layer before transactions occur.", category: "Concept" },
+            { id: 3, title: "Negotiation", description: "The system influences pricing decisions, contract terms, and commercial commitments before they are agreed. It ensures negotiation decisions are structurally sound.", category: "Control Domain" },
+            { id: 4, title: "Pricing and Margin", description: "The authority to protect margin before commitment. Includes index exposure, pricing logic, deal thresholds, and structural profitability validation.", category: "Control Domain" },
+            { id: 5, title: "Compliance and Risk", description: "Covers contractual obligations, regulatory alignment, SLA exposure, and structural risk before operational execution.", category: "Control Domain" },
+            { id: 6, title: "Intake & Demand", description: "Controls how commercial commitments align with demand forecasts, volume expectations, and intake assumptions. Prevents structural over-commitment.", category: "Control Domain" },
+            { id: 7, title: "Sourcing", description: "Authority over supplier alignment, obligation mirroring, and structural back-to-back protection.", category: "Control Domain" },
+            { id: 8, title: "Cash & Recovery", description: "Ensures milestone, invoice, and payment terms structurally protect working capital before execution.", category: "Control Domain" },
+            { id: 9, title: "These are domains of enterprise authority, not point use cases.", description: "Clarifies that Spendkey is not offering tactical analytics modules. It is shifting authority in entire commercial domains.", category: "Positioning" },
+            { id: 10, title: "Spendkey CASSIAN", description: "The name of the autonomous reasoning engine powering the decision layer. Represents system intelligence, not dashboards.", category: "System Component" },
+            { id: 11, title: "Decision-First Commercial Control Plane", description: "The core of Spendkey. A control layer that reasons across contracts, pricing, obligations, and spend before transactions occur. It is upstream of ERP execution.", category: "Core Architecture" },
+            { id: 12, title: "1. INGEST", description: "The system ingests structured and unstructured data including contracts, pricing schedules, invoices, indices, and obligations.", category: "Process Step" },
+            { id: 13, title: "Multi-source commercial reality (structured + unstructured data)", description: "Data comes from ERP, CRM, contracts, S2P, and external index sources. The system unifies these into one commercial model.", category: "Data Layer" },
+            { id: 14, title: "2. REASON", description: "AI agents interpret relationships across commitments, pricing logic, and risk exposure.", category: "Process Step" },
+            { id: 15, title: "AI agent reason across contracts, pricing, obligation and spend", description: "The intelligence layer synthesises multiple sources simultaneously, something ERP cannot structurally do.", category: "Capability" },
+            { id: 16, title: "3. DECIDE", description: "The system produces defensible commercial decisions before execution.", category: "Process Step" },
+            { id: 17, title: "Prioritised, defensible commercial decisions (before transactions occur)", description: "Outputs are not dashboards but decision gates, alerts, and enforceable thresholds.", category: "Capability" },
+            { id: 18, title: "4. GOVERN", description: "Human-in-the-loop oversight ensures accountability and auditability.", category: "Process Step" },
+            { id: 19, title: "Human validation, auditability, and policy control", description: "Decisions are explainable, traceable, and enforceable under enterprise governance.", category: "Governance" },
+            { id: 20, title: "Decisions before transactions or workflow", description: "Emphasises prevention. Control moves upstream, before the ERP records a transaction.", category: "Core Differentiator" },
+            { id: 21, title: "Autonomous Commercial Control Agents", description: "These are not chatbots. They are domain-specific reasoning engines (margin control, obligation control, etc.).", category: "Architecture" },
+            { id: 22, title: "Margin & Value Control", description: "Agent monitors structural profitability exposure before commitment.", category: "Agent Type" },
+            { id: 23, title: "Contract & Obligation Control", description: "Agent ensures obligations flow down and are structurally aligned.", category: "Agent Type" },
+            { id: 24, title: "Pricing, Index & Inflation Control", description: "Agent models index-linked pricing and margin risk.", category: "Agent Type" },
+            { id: 25, title: "Negotiation & Scenario Control", description: "Agent simulates commercial outcomes before terms are agreed.", category: "Agent Type" },
+            { id: 26, title: "Supplier & Counterparty Control", description: "Agent evaluates structural exposure across suppliers and counterparties.", category: "Agent Type" },
+            { id: 27, title: "These are control agents, not analytics bots.", description: "Clarifies the system is enforcing authority, not generating insights.", category: "Positioning" },
+            { id: 28, title: "Decisions power control", description: "Decisions are upstream authority inputs into operational systems.", category: "Architecture Logic" },
+            { id: 29, title: "Control validates decisions", description: "Feedback loop where outcomes refine system intelligence.", category: "Learning Loop" },
+            { id: 30, title: "ERP-native blind spot", description: "ERP systems record transactions but do not reason across commitments.", category: "Positioning" },
+            { id: 31, title: "Sales–Supply–Cash Control Loop", description: "The first major application layer. It triangulates commitments across revenue, supply, and cash before execution.", category: "Application Layer" },
+            { id: 32, title: "Triangulates", description: "System cross-references sales contracts, supply contracts, and actual spend simultaneously.", category: "Capability" },
+            { id: 33, title: "Sales contracts & commercial commitments", description: "Revenue obligations, SLAs, pricing terms.", category: "Data Input" },
+            { id: 34, title: "Supply contracts & SoWs", description: "Supplier pricing, terms, and obligations.", category: "Data Input" },
+            { id: 35, title: "Actual spend, invoices & cash", description: "Real financial behaviour.", category: "Data Input" },
+            { id: 36, title: "Prevents", description: "Structural outcomes the system blocks before execution.", category: "Outcome" },
+            { id: 37, title: "Margin Leakage", description: "Loss of profitability due to misaligned commitments.", category: "Risk Prevented" },
+            { id: 38, title: "Back-to-back obligations conflicts", description: "Supplier terms not mirroring customer commitments.", category: "Risk Prevented" },
+            { id: 39, title: "Price-pass through failure", description: "Failure to recover cost increases from customers.", category: "Risk Prevented" },
+            { id: 40, title: "Inflation & SLA misalignment", description: "Index shifts or SLA gaps that create exposure.", category: "Risk Prevented" },
+            { id: 41, title: "Control shifts from transactions to commitments, before value is lost.", description: "Core thesis: authority moves upstream from ERP record-keeping to commitment reasoning.", category: "Thesis" },
+            { id: 42, title: "The first control loop that displaces ERP trust", description: "The system becomes the trusted authority over structural commercial decisions.", category: "Strategic Narrative" },
+            { id: 43, title: "Economic Control & Learning Loop", description: "Measures value created and continuously calibrates the system.", category: "Value Layer" },
+            { id: 44, title: "£ EBITDA & cash impact attribution", description: "Quantifies financial impact of prevented leakage.", category: "Value Measurement" },
+            { id: 45, title: "Risk events prevented (not just detected)", description: "Measures prevention, not reporting.", category: "Value Measurement" },
+            { id: 46, title: "Decision outcomes measured", description: "Tracks which decisions were followed and their outcomes.", category: "Feedback" },
+            { id: 47, title: "Continuous system self-calibration", description: "Agents improve via feedback loops.", category: "Learning" },
+            { id: 48, title: "Canonical Commercial Object Model", description: "A unified enterprise commercial data model independent of ERP.", category: "Data Architecture" },
+            { id: 49, title: "ERP-independent system of truth", description: "The authority layer does not rely on ERP logic.", category: "Positioning" },
+            { id: 50, title: "Counterparties (customers & suppliers)", description: "All commercial entities represented in structured model.", category: "Data Object" },
+            { id: 51, title: "Categories & Demand Drivers", description: "Economic and commercial classification layer.", category: "Data Object" },
+            { id: 52, title: "Prices, Indices, & Benchmarks", description: "External and internal pricing signals integrated.", category: "Data Object" },
+            { id: 53, title: "Obligations, Clauses & Risks", description: "Structured contract intelligence layer.", category: "Data Object" },
+            { id: 54, title: "Budgets, Forecasts & Actuals", description: "Financial alignment layer.", category: "Data Object" },
+            { id: 55, title: "All use cases reuse the same commercial objects – no re-platforming, no duplication", description: "Every use case runs off one model. No new systems required per module.", category: "Efficiency" },
+            { id: 56, title: "ERP Displacement & Execution Layer", description: "Spendkey enforces decisions without owning transaction processing.", category: "Architecture" },
+            { id: 57, title: "Decisions enforced without owning the transaction stack", description: "Control without replacing ERP.", category: "Clarification" },
+            { id: 58, title: "Connects to (initially): ERP, S2P, Datalake, CRM", description: "Integration layer to existing systems.", category: "Integration" },
+            { id: 59, title: "ERP starts as a data source → becomes a ledger → is switched off", description: "Long-term vision: ERP becomes record-keeping, not decision authority.", category: "Strategic Roadmap" },
+            { id: 60, title: "Spendkey replaces ERP control incrementally, category by category, without big-bang migration.", description: "Gradual displacement strategy. No risky transformation event.", category: "Strategic Positioning" }
+        ];
+
+        let expandedId = null;
+
+        function renderList() {
+            const container = document.getElementById('list-container');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'list-item';
+
+                const button = document.createElement('button');
+                button.className = 'list-button';
+                button.onclick = () => toggleExpand(item.id);
+
+                const isExpanded = expandedId === item.id;
+
+                button.innerHTML = `
+                    <div class="button-content">
+                        <svg class="icon ${isExpanded ? 'icon-expanded' : 'icon-collapsed'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${isExpanded 
+                                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>'
+                                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>'
+                            }
+                        </svg>
+                        <span class="title">${item.title}</span>
+                    </div>
+                `;
+
+                itemDiv.appendChild(button);
+
+                if (isExpanded) {
+                    const details = document.createElement('div');
+                    details.className = 'details';
+                    details.innerHTML = `
+                        <div class="details-content">
+                            <div class="details-grid">
+                                <div class="details-main">
+                                    <h3 class="details-heading">Detailed Explanation (Internal Hover Content)</h3>
+                                    <p class="details-text">${item.description}</p>
+                                </div>
+                                <div class="details-sidebar">
+                                    <h3 class="details-heading">Category</h3>
+                                    <p class="details-text">${item.category}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    itemDiv.appendChild(details);
+                }
+
+                container.appendChild(itemDiv);
+            });
+        }
+
+        function toggleExpand(id) {
+            expandedId = expandedId === id ? null : id;
+            renderList();
+        }
+
+        // Initial render
+        renderList();
+    </script>
+</body>
+</html>
